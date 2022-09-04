@@ -21,15 +21,15 @@ const server = http.createServer((req, res) => {
         /* 
             // Synchronus Way
         */
-       /* const datafs = fs.readFileSync('data.txt');
-        res.write(datafs)
-        res.end() */
+        /* const datafs = fs.readFileSync('data.txt');
+         res.write(datafs)
+         res.end() */
 
         fs.writeFile('newData.txt', 'Hello Node JS !!!', (error) => {
-            if(error){
+            if (error) {
                 res.write('Failed to write data.')
                 res.end()
-            }else{
+            } else {
                 res.write('data written successfully')
                 res.end()
             }
