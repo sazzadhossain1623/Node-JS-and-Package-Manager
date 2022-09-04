@@ -1,44 +1,16 @@
-const http = require('http');
-const fs = require('fs');
+const events = require('events');
 
-const server = http.createServer((req, res) => {
-    if (req.url == '/') {
-        /* 
-            // Asynchronus Way
-        */
-        /* 
-            fs.readFile('data.txt', (error, data) =>{
-                if(error){
-                    res.write('Faild to read data!!')
-                    res.end();
-                }else{
-                    res.write(data)
-                    res.end();
-                }
-            }) 
-        */
+const eventEmitter = new events.EventEmitter();
 
-        /* 
-            // Synchronus Way
-        */
-       /* const datafs = fs.readFileSync('data.txt');
-        res.write(datafs)
-        res.end() */
+// creating an event handler
 
-        fs.writeFile('newData.txt', 'Hello Node JS !!!', (error) => {
-            if(error){
-                res.write('Failed to write data.')
-                res.end()
-            }else{
-                res.write('data written successfully')
-                res.end()
-            }
-        })
-    }
+const willDoScream = () =>{
+    console.log('Where the hell are you?? I am standing here for last 2 hours!!')
+}
 
-})
+// assign the handler into an event
+eventEmitter.on('scream', willDoScream).willDoScream
 
-const PORT = 5000;
-server.listen(PORT);
+// firing the event
 
-console.log(`Server is Running at ${PORT}`);
+eventEmitter.emit('scream')
